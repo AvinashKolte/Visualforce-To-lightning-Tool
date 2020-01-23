@@ -1,8 +1,8 @@
-import { LightningElement, api } from 'lwc';
+import { LightningElement } from 'lwc';
 
 export default class FileDownload extends LightningElement {
-    /*@api
-    data='';*/
+   
+    data='';
     download(filename, text) {
         var element = document.createElement('a');
         element.setAttribute('href', 'data:text/plain;charset=utf-8,' + encodeURIComponent(text));
@@ -16,7 +16,7 @@ export default class FileDownload extends LightningElement {
         document.body.removeChild(element);
       }
 
-    /*  handleChange(event)
+      handleChange(event)
       {
           this.data=event.target.value;
             
@@ -25,10 +25,12 @@ export default class FileDownload extends LightningElement {
     {
         const fileName="demo.txt";
         this.download(fileName,this.data);
-    }*/
-    @api
-    handleDownload(fileName,text)
-    {
-        this.download(fileName,text);
     }
+    /*@api
+    handleDownload(fileName,data)
+    {
+        console.log("fileName:->"+fileName);
+        console.log("text:->"+data);
+        this.download(fileName,data);
+    }*/
 }
