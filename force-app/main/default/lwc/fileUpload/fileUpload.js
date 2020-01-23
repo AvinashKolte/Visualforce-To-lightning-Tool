@@ -2,18 +2,21 @@
 import { LightningElement } from 'lwc';
 
 export default class FileUpload extends LightningElement {
+    data;
+    fileName;
     handleFilesChange(event)
     {
-        const fileData=event.target.value;
-        console.log("file data:-->"+fileData);
+        this.fileName=event.target.value;
+        console.log("file data:-->"+this.fileName);
         const input = event.target;
 
     const reader = new FileReader();
     reader.onload = function(){
-      const dataURL = reader.result;
+      this.data=reader.result;
+        //const dataURL = reader.result;
       //var output = document.getElementById('output');
       //output.src = dataURL;
-      console.log("data:-->"+dataURL.toString());
+      console.log("data:-->"+this.data);
     };
     reader.readAsText(input.files[0]);
     }
@@ -21,5 +24,8 @@ export default class FileUpload extends LightningElement {
     handleClick()
     {
         console.log("inside button click-->");
+        const fileDown=this.template.querySelector("fileDownload");
+        fileDown.hadleDownload(this.fileName,this.data);
+
     }
 }
