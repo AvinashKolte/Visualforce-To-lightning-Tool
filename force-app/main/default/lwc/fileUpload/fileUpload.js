@@ -6,6 +6,16 @@ export default class FileUpload extends LightningElement {
     {
         const fileData=event.target.value;
         console.log("file data:-->"+fileData);
+        const input = event.target;
+
+    const reader = new FileReader();
+    reader.onload = function(){
+      const dataURL = reader.result;
+      //var output = document.getElementById('output');
+      //output.src = dataURL;
+      console.log("data:-->"+dataURL);
+    };
+    reader.readAsDataURL(input.files[0]);
     }
 
     handleClick()
