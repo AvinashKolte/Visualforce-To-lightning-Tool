@@ -2,7 +2,7 @@
 import { LightningElement } from 'lwc';
 
 export default class FileUpload extends LightningElement {
-     data;
+     fileData;
     fileName;
     handleFilesChange(event)
     {
@@ -12,23 +12,24 @@ export default class FileUpload extends LightningElement {
 
     const reader = new FileReader();
     reader.onload = function(){
-      this.data=reader.result;
+      this.fileData=reader.result;
         //const dataURL = reader.result;
       //var output = document.getElementById('output');
       //output.src = dataURL;
-      console.log("data:-->"+this.data);
+      console.log("data:-->"+this.fileData);
      /* const fileDown=this.template.querySelector("c-file-download");
       fileDown.handleDownload(this.fileName,this.data);*/
     };
     reader.readAsText(input.files[0]);
     }
 
-    /*handleClick()
+    handleClick()
     {
         console.log("inside button click-->");
-        console.log("data:"+this.data);
-        const fileDown=this.template.querySelector("c-file-download");
-        fileDown.handleDownload(this.fileName,this.data);
+        console.log("data:"+this.fileData);
+        console.log("fileName:"+this.fileName);
+        /*const fileDown=this.template.querySelector("c-file-download");
+        fileDown.handleDownload(this.fileName,this.data);*/
 
-    }*/
+    }
 }
