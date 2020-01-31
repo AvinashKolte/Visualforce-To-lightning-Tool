@@ -1,12 +1,19 @@
 /* eslint-disable no-console */
 import { LightningElement, api } from 'lwc';
+import VFLIGHTNINGMAPPING from '@salesforce/resourceUrl/VisualforceToLightningMapping';
+import getMapping from '@salesforce/apex/VfToLightningController.getMapping';
 export default class ProcessFile extends LightningElement {
    
     @api
     processDocument(data)
     {
-        console.log("data-->"+data);
-        const parser = new DOMParser();
+        
+        console.log("data inside process Document-->"+data);
+        console.log("before get static resource data-->");
+        console.log("this value:-->"+this);
+        this.getVfToLightningMapping();
+        console.log("after get static resourse data-->");
+       /* const parser = new DOMParser();
         const xmlDoc = parser.parseFromString(data,"text/xml");
         console.log("xmlDoc::-->"+xmlDoc);
         //console.log("nodes-->"+xmlDoc.getElementsByTagName("apex:page").);
@@ -24,6 +31,34 @@ export default class ProcessFile extends LightningElement {
         {
  
           console.log("childs:-->"+childNodes[j].nodeName);
-        }
+        }*/
+    }
+
+    getVfToLightningMapping()
+    {
+        console.log("inside getVFToLightning Mapping-->");
+        const mapping=VFLIGHTNINGMAPPING;
+       
+        console.log("vf to lightning mapping:-->"+mapping.toString());
+        getMapping({staticResourceName:VisualforceToLightningMapping})
+        .then(result=>{
+            console.log("result:"+result);
+        })
+        .catch(error=>
+            {
+                console.log("error->"+error);
+            })
+         /*  const reader = new FileReader();
+            reader.onload = function(){
+            let staticData=reader.result;
+            console.log("static resource data:-->"+staticData);
+        };
+        console.log();
+        reader.readAsText(mapping);*/
+        /*let request = new XMLHttpRequest();
+        request.open("GET", mapping, false);
+        request.send(null);
+        let staticResourceData=request.responseText;
+        console.log("staticResourceData:"+staticResourceData);*/
     }
 }
