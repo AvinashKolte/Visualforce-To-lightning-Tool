@@ -23,10 +23,13 @@ public with sharing class VfToLightningController {
         {
             return mapOfResource;
         }
+        else {
+            return null;
+        }
         }
         catch(Exception ex)
         {
-            return new throw new AuraHandledException('Error while loading mapping');;
+            return new throw new AuraHandledException('Error while loading mapping');
         }
     }
 }
