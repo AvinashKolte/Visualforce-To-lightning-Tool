@@ -1,7 +1,7 @@
 /* eslint-disable no-console */
 import { LightningElement, api } from 'lwc';
 import VFLIGHTNINGMAPPING from '@salesforce/resourceUrl/VisualforceToLightningMapping';
-import getMapping from '@salesforce/apex/VfToLightningController.getMapping';
+import getMapping from '@salesforce/apex/c.VfToLightningController.getMapping';
 export default class ProcessFile extends LightningElement {
    
     @api
