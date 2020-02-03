@@ -2,15 +2,14 @@ public with sharing class VfToLightningController {
     public VfToLightningController() {
 
     }
-    
+
     @AuraEnabled
     public static Map<String,String> getMapping(String staticResourceName){
 
         Map<String,String> mapOfResource=new Map<String,String>();
         try{
         StaticResource sr = [select id,body from StaticResource Where Name =:staticResourceName];
-        String c
-        ontents = sr.body.toString();
+        String contents = sr.body.toString();
         for(String line:contents.split('\n')) {
         // Do something with this config
         if(line!=null && line!='' && line.contains('-'))
@@ -30,7 +29,7 @@ public with sharing class VfToLightningController {
         }
         catch(Exception ex)
         {
-            return new throw new AuraHandledException('Error while loading mapping');
+            return null;
         }
     }
 }
