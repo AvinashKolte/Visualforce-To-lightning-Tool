@@ -3,7 +3,7 @@ import { LightningElement, api } from 'lwc';
 import VFLIGHTNINGMAPPING from '@salesforce/resourceUrl/VisualforceToLightningMapping';
 import getMapping from '@salesforce/apex/VfToLightningController.getMapping';
 export default class ProcessFile extends LightningElement {
-   
+   mapping;
     @api
     processDocument(data)
     {
@@ -40,9 +40,16 @@ export default class ProcessFile extends LightningElement {
         const mapping=VFLIGHTNINGMAPPING;
        
         console.log("vf to lightning mapping:-->"+mapping.toString());
-        getMapping({staticResourceName:VisualforceToLightningMapping})
+        getMapping({staticResourceName:"VisualforceToLightningMapping"})
         .then(result=>{
             console.log("result:"+result);
+            //this.mapping=result;
+            //let resultMapping=result.entries();
+            // eslint-disable-next-line guard-for-in
+            for (const [k, v] of result) {
+                console.log(k, v)
+              }
+
         })
         .catch(error=>
             {

@@ -10,6 +10,7 @@ public with sharing class VfToLightningController {
         try{
         StaticResource sr = [select id,body from StaticResource Where Name =:staticResourceName];
         String contents = sr.body.toString();
+        System.debug('contents:'+contents);
         for(String line:contents.split('\n')) {
         // Do something with this config
         if(line!=null && line!='' && line.contains('-'))
@@ -19,16 +20,20 @@ public with sharing class VfToLightningController {
             
         }
         }
+        System.debug('mapOfResource:'+mapOfResource);
         if(mapOfResource!=null && mapOfResource.size()>0)
         {
+            System.debug('inside result not null-->');
             return mapOfResource;
         }
         else {
+            System.debug('inside result null-->');
             return null;
         }
         }
         catch(Exception ex)
         {
+            System.debug('inside exception--->');
             return null;
         }
     }
